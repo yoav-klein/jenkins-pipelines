@@ -8,7 +8,7 @@ node {
 
         def rtGradle = Artifactory.newGradleBuild()
         rtGradle.useWrapper = true
-        rtGradle.deployer server: Artifactory.server('artifactory'), repo: 'libs-release-local'
+        rtGradle.deployer server: Artifactory.server('artifactory'), repo: 'my-maven'
 
         def buildInfo = rtGradle.run rootDir: "tcp-client/", buildFile: 'build.gradle', tasks: 'clean artifactoryPublish''
 
