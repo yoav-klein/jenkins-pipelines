@@ -3,11 +3,15 @@ node {
     checkout scm
     
     dir('gradle-artifactory-pipeline') {
+
         sh script: 'chmod +x tcp-client/gradlew'
+
         def rtGradle = Artifactory.newGradleBuild()
         rtGradle.useWrapper = true
         rtGradle.deployer server: Artifactory.server('artifactory'), repo: 'libs-release-local'
 
         def buildInfo = rtGradle.run rootDir: "tcp-client/", buildFile: 'build.gradle', tasks: 'clean build'
+
+        sh script: 'ls tcp-client'
     }
 }
