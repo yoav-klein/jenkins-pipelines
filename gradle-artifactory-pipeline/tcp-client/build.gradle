@@ -1,7 +1,7 @@
 
 plugins {
     id 'java-library'
-    // id 'maven-publish'
+    id 'maven-publish'
 }
 
 group = 'com.yoav'
@@ -15,12 +15,6 @@ publishing {
         }
     }
 
-    repositories {
-        maven {
-            name = 'myRepo'
-            url = layout.buildDirectory.dir("/home/cloud_user/repo")
-        }
-    }
 }
 
 
