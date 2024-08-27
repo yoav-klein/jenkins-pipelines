@@ -4,6 +4,7 @@ node {
     
     dir('gradle-artifactory-pipeline') {
         def rtGradle = Artifactory.newGradleBuild()
+        rtGradle.useWarpper = true
         rtGradle.deployer server: Artifactory.server('artifactory'), repo: 'libs-release-local'
 
         def buildInfo = rtGradle.run rootDir: "tcp-client/", buildFile: 'build.gradle', tasks: 'clean build'
