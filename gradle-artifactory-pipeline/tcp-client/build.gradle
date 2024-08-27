@@ -8,6 +8,7 @@ group = 'com.yoav'
 version = '1.2'
 
 
+// we don't need to declare repositories because this is taken care of by the plugin
 publishing {
     publications {
         myLibrary(MavenPublication) {

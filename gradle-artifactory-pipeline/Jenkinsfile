@@ -9,11 +9,15 @@ node {
         def server = Artifactory.server('artifactory')
 
         def rtGradle = Artifactory.newGradleBuild()
+
+        // using the wrapper allows you to avoid installing Gradle on the node
         rtGradle.useWrapper = true
         rtGradle.deployer server: server, repo: 'my-maven'
 
+        // this builds the project and pusblishes to Artifactory
         def buildInfo = rtGradle.run rootDir: "tcp-client/", buildFile: 'build.gradle', tasks: 'clean artifactoryPublish'
 
+        // and here we publish the buildinfo
         server.publishBuildInfo buildInfo
         
 
