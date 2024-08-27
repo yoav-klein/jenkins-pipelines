@@ -1,4 +1,5 @@
 node {
     cleanWs()
     sh script: "ls"
+    checkout scm
 }
