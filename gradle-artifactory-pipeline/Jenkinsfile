@@ -10,7 +10,7 @@ node {
         rtGradle.useWrapper = true
         rtGradle.deployer server: Artifactory.server('artifactory'), repo: 'my-maven'
 
-        def buildInfo = rtGradle.run rootDir: "tcp-client/", buildFile: 'build.gradle', tasks: 'clean artifactoryPublish''
+        def buildInfo = rtGradle.run rootDir: "tcp-client/", buildFile: 'build.gradle', tasks: 'clean artifactoryPublish'
 
         sh script: 'ls tcp-client'
     }
