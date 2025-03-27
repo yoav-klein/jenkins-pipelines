@@ -1,0 +1,53 @@
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id "com.jfrog.artifactory" version "5.+"
+}
+
+group = 'com.yoav'
+version = '1.4'
+
+
+// we don't need to declare repositories because this is taken care of by the plugin
+publishing {
+    publications {
+        myLibrary(MavenPublication) {
+            from components.java
+        }
+    }
+
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+
+String jfrogPlatformUrl = "https://your-artifactory.com"
+// if this variable is called repoKey - it doesn't work
+String repoName = "digi-gradle-staging-local"
+String artifactoryUser = "xxx"
+String artifactoryPass = "xxx"
+
+artifactory {
+    publish {
+        contextUrl = "${jfrogPlatformUrl}/artifactory"
+        repository {
+            repoKey = repoName
+            username = artifactoryUser
+            password = artifactoryPass
+        }
+
+        // Include all configured publications for all the modules
+        defaults {
+            publications('myLibrary')
+            publishArtifacts = true
+        }
+    }
+}
+
+
+

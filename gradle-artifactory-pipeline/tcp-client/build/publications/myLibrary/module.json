@@ -1,0 +1,60 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.yoav",
+    "module": "tcp-client",
+    "version": "1.4",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.12"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "tcp-client-1.4.jar",
+          "url": "tcp-client-1.4.jar",
+          "size": 936,
+          "sha512": "a779fc4b12547236c85fc66f08b3f7e152b3b94b833e1612d06557ff92b1c6f32d458c29b6d41b08635aaf6dc398e12b456401c4cc0ff2263214f8ca86bcd58f",
+          "sha256": "1e73fc1ea47e30a21e7392dd2e18300f68f28a278b4927e7ecdb1554c479d52b",
+          "sha1": "5e414cb52e8f76748b4320174088175b5f4d708d",
+          "md5": "51243485db06e227be5b897d341d5fc5"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "tcp-client-1.4.jar",
+          "url": "tcp-client-1.4.jar",
+          "size": 936,
+          "sha512": "a779fc4b12547236c85fc66f08b3f7e152b3b94b833e1612d06557ff92b1c6f32d458c29b6d41b08635aaf6dc398e12b456401c4cc0ff2263214f8ca86bcd58f",
+          "sha256": "1e73fc1ea47e30a21e7392dd2e18300f68f28a278b4927e7ecdb1554c479d52b",
+          "sha1": "5e414cb52e8f76748b4320174088175b5f4d708d",
+          "md5": "51243485db06e227be5b897d341d5fc5"
+        }
+      ]
+    }
+  ]
+}

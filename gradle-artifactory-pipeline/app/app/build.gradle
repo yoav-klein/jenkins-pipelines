@@ -1,0 +1,79 @@
+
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+    //id "com.jfrog.artifactory" version "5.+"
+    id 'maven-publish'
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    maven {
+        url = 'https://ilptdmvl-digiaf.cyberng.com/artifactory/digi-gradle-dev-local'
+    }
+}
+
+version="2.0"
+group="com.yoav"
+
+dependencies {
+    implementation 'com.yoav:tcp-client:1.3'
+}
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'com.yoav.App'
+}
+
+tasks.register('uberJar', Jar) {
+    archiveClassifier = 'uber'
+
+    from sourceSets.main.output
+    from "foo/bar.txt" // just to understand how it works. so the from method can take many types of arguments.
+    // if you provide a string, it's interpreted as a file path relative to the project root direcotry
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+}
+/*
+
+publishing {
+    publications {
+        myLibrary(MavenPublication) {
+            //from components.java
+            artifact uberJar
+        }
+    }
+}
+
+String jfrogPlatformUrl = "https://your-artifactory.com"
+// if this variable is called repoKey - it doesn't work
+String repoName = "digi-gradle-staging-local"
+String artifactoryUser = "xxx"
+String artifactoryPass = "xxx"
+
+
+artifactory {
+    publish {
+        contextUrl = "${jfrogPlatformUrl}/artifactory"
+        repository {
+            repoKey = repoName
+            //username = artifactoryUser
+            //password = artifactoryPass
+        }
+
+        // Include all configured publications for all the modules
+        defaults {
+            publications('myLibrary')
+            publishArtifacts = true
+        }
+    }
+}*/

@@ -1,0 +1,28 @@
+node('node2') {
+    cleanWs()
+    checkout scm
+    
+    dir('gradle-artifactory-pipeline/app') {
+
+        sh script: 'chmod +x gradlew'
+        println "======================"
+
+        def server = Artifactory.server('DiGiArtifactory')
+
+        def rtGradle = Artifactory.newGradleBuild()
+
+        // using the wrapper allows you to avoid installing Gradle on the node
+        rtGradle.useWrapper = true
+        // rtGradle.usesPlugin = true
+        rtGradle.resolver server: server, repo: 'digi-gradle-staging-local'
+        rtGradle.deployer server: server, repo: 'digi-gradle-dev-local'
+
+        // this builds the project and pusblishes to Artifactory
+        def buildInfo = rtGradle.run tasks: 'clean artifactoryPublish'
+
+        // and here we publish the buildinfo
+        server.publishBuildInfo buildInfo
+        
+
+    }
+}
